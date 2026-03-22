@@ -1,7 +1,6 @@
 {
   "name": "nostradamus-monitor",
   "version": "1.0.0",
-  "description": "Monitor DeFi",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
@@ -10,8 +9,5 @@
     "axios": "^1.6.0",
     "express": "^4.18.2",
     "node-cron": "^3.0.3"
-  },
-  "engines": {
-    "node": "18.x"
   }
 }
