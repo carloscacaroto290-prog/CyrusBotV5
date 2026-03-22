@@ -1,5 +1,5 @@
 {
-  "name": "nostradamus-monitor",
+  "name": "Cyrus AppVerse Monitor",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
