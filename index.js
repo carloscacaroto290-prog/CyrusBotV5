@@ -56,7 +56,7 @@ app.post('/webhook-moralis', async (req, res) => {
 app.get('/', (req, res) => res.send('Monitor Nostradamus Online 🚀'));
 
 // Usa el puerto que Railway quiera, y si no hay, el 3000 por defecto
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`✅ Cyrus Monitor en línea. Puerto: ${PORT}`);
