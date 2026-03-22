@@ -15,3 +15,11 @@ COPY . .
 
 # Comando para arrancar el bot
 CMD ["node", "index.js"]
+
+FROM node:18-slim
+WORKDIR /app
+COPY package.json ./
+RUN npm install
+COPY . .
+EXPOSE 8080
+CMD ["node", "index.js"]
