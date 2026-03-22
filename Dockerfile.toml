@@ -21,5 +21,5 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 COPY . .
-EXPOSE 8080
+# Eliminamos el EXPOSE para que Railway use su configuración automática
 CMD ["node", "index.js"]
