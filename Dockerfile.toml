@@ -1,0 +1,17 @@
+# Usamos una imagen ligera de Node.js
+FROM node:18-slim
+
+# Creamos la carpeta de la app
+WORKDIR /app
+
+# Copiamos solo el package.json primero
+COPY package.json ./
+
+# Ejecutamos el install normal (NO el ci que da error)
+RUN npm install
+
+# Copiamos el resto de los archivos (index.js, users_db.json)
+COPY . .
+
+# Comando para arrancar el bot
+CMD ["node", "index.js"]
