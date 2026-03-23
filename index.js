@@ -104,7 +104,17 @@ app.post('/webhook-moralis', async (req, res) => {
 cron.schedule('0 */4 * * *', async () => {
     console.log("⏳ Generando reporte de tesorería automático...");
     try {
-        const balResp = await axios.get(`https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=${USDT_CONTRACT}&address=${WALLET_TESORERIA}&tag=latest&apikey=${BSC_API_KEY}`);
+        // NUEVA URL API V2 (Con el chainid=56 para la red BSC)
+        const url = `https://api.etherscan.io/v2/api?chainid=56&module=account&action=tokenbalance&contractaddress=${USDT_CONTRACT}&address=${WALLET_TESORERIA}&tag=latest&apikey=${BSC_API_KEY}`;
+        
+        const balResp = await axios.get(url);
+
+        // Freno de emergencia: Si la API responde con error, abortamos para evitar el NaN
+        if (balResp.data.status === "0") {
+            console.error("❌ La API rechazó la consulta. Razón:", balResp.data.result);
+            return; 
+        }
+
         const saldoTotal = parseFloat(balResp.data.result) / 1e18;
 
         const reporte = `📊 *REPORTE PERIÓDICO DE TESORERÍA CYRUS*\n\n🔹 *Balance Total Actual:* \`${saldoTotal.toFixed(2)}\` USDT\n\n_Generado automáticamente por Cyrus Monitor._`;
