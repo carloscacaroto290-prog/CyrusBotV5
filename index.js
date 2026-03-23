@@ -46,6 +46,16 @@ app.get('/', (req, res) => {
     res.status(200).send('Cyrus Monitor Online 🚀');
 });
 
+// RUTA DE PRUEBA MANUAL
+app.get('/test-telegram', async (req, res) => {
+    try {
+        await sendTelegram("🚀 *MENSAJE DE PRUEBA:* El sistema de monitoreo Cyrus está vinculado correctamente con Railway.");
+        res.send("✅ Mensaje de prueba enviado. Revisa tu canal de Telegram.");
+    } catch (error) {
+        res.status(500).send("❌ Error al enviar mensaje: " + error.message);
+    }
+});
+
 // 2. Webhook para Moralis (Cualquier ruta POST)
 app.post('*', async (req, res) => {
     // Respondemos 200 inmediatamente para Moralis
