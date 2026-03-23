@@ -1,3 +1,19 @@
+app.post('/webhook-moralis', async (req, res) => {
+    // 1. Responder 200 OK inmediatamente (Moralis no espera)
+    res.status(200).send('OK'); 
+
+    // 2. Extraer los datos
+    const body = req.body;
+
+    // Si Moralis solo está probando la conexión, el body vendrá vacío o sin logs
+    if (!body || !body.logs || body.logs.length === 0) {
+        console.log("Prueba de conexión recibida de Moralis ✅");
+        return;
+    }
+
+    // ... aquí sigue el resto de tu código de Telegram ...
+});
+
 const axios = require('axios');
 const express = require('express');
 const fs = require('fs');
