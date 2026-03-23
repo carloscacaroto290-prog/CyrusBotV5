@@ -107,4 +107,13 @@ cron.schedule('0 */4 * * *', async () => {
 
 // --- INICIO DEL SERVIDOR ---
 const PORT = process.env.PORT || 8080;
+// Escribe esto en tu navegador: https://tu-link.up.railway.app/test
+app.get('/test', async (req, res) => {
+    try {
+        await sendTelegram("🚀 *PRUEBA DE CONEXIÓN:* Cyrus Monitor está listo.");
+        res.send("<h1>✅ Mensaje enviado a Telegram</h1>");
+    } catch (e) {
+        res.status(500).send("Error: " + e.message);
+    }
+});
 app.listen
